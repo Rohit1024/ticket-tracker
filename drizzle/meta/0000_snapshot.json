@@ -1,0 +1,137 @@
+{
+  "id": "ef88470b-7073-4ec8-975d-8c342b3f1e3e",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "ticket_tracker_cases": {
+      "name": "ticket_tracker_cases",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "case_id": {
+          "name": "case_id",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ldap": {
+          "name": "ldap",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "ticket_tracker_status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'awaiting-assignment'"
+        },
+        "shard": {
+          "name": "shard",
+          "type": "ticket_tracker_shards",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'infra'"
+        },
+        "coverbug": {
+          "name": "coverbug",
+          "type": "ticket_tracker_coverbug",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'oos'"
+        },
+        "stack_id": {
+          "name": "stack_id",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "comments": {
+          "name": "comments",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "assigned_at": {
+          "name": "assigned_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "closed_at": {
+          "name": "closed_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "name_idx": {
+          "name": "name_idx",
+          "columns": [
+            "case_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "ticket_tracker_coverbug": {
+      "name": "ticket_tracker_coverbug",
+      "values": {
+        "oos": "oos",
+        "googler": "googler",
+        "low-quality": "low-quality",
+        "no-action-necessary": "no-action-necessary",
+        "duplicate": "duplicate"
+      }
+    },
+    "ticket_tracker_shards": {
+      "name": "ticket_tracker_shards",
+      "values": {
+        "platform": "platform",
+        "infra": "infra",
+        "data": "data",
+        "network": "network",
+        "workspace": "workspace"
+      }
+    },
+    "ticket_tracker_status": {
+      "name": "ticket_tracker_status",
+      "values": {
+        "assigned": "assigned",
+        "awaiting-assignment": "awaiting-assignment",
+        "WOCR": "WOCR",
+        "closed": "closed",
+        "IPGS": "IPGS",
+        "IPCR": "IPCR",
+        "solution offered": "solution offered",
+        "transferred": "transferred"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
